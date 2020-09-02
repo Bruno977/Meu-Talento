@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "881981424184",
+    "firebase_url": "https://meu-talento-1005b.firebaseio.com",
+    "project_id": "meu-talento-1005b",
+    "storage_bucket": "meu-talento-1005b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881981424184:android:885d885d9cc7a69ed39ccd",
+        "android_client_info": {
+          "package_name": "com.example.meutalento"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "881981424184-18r7m0bh35mqp901n0nieiosqgf48in2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.meutalento",
+            "certificate_hash": "2b88933f2d7ca5bac7a155d0b49036bcff57c14f"
+          }
+        },
+        {
+          "client_id": "881981424184-ris0f9udeao2qkhd14e26r6td0da3ji6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClp8mDZeu5vmni1zZQtOZ1sy3kohaFyyk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "881981424184-ris0f9udeao2qkhd14e26r6td0da3ji6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
