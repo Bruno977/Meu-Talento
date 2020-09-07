@@ -8,7 +8,6 @@
         android:layout_height="match_parent">
 
         <include layout="@layout/layout_profile"/>
-        
         <include layout="@layout/layout_bottom_navigation_view"/>
 
     </RelativeLayout>

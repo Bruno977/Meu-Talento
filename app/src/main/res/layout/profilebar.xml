@@ -23,6 +23,16 @@
                     android:layout_marginStart="15dp"
                     android:id="@+id/profileName"/>
 
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/profileMenu"
+                    android:src="@drawable/ic_profile_options"
+                    android:onClick="showPopup" />
+
             </RelativeLayout>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
