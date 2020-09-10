@@ -30,8 +30,10 @@
                 android:weightSum="100">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:src="@drawable/minhafoto"
                     android:id="@+id/profile_image"
                     app:civ_border_color="@color/black"
                     app:civ_border_width="2dp" />
