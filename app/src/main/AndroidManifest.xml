@@ -19,6 +19,7 @@
         <activity android:name="com.example.meutalento.New.NewActivity"></activity>
         <activity android:name=".Profile.ProfileActivity"></activity>
         <activity android:name=".Search.SearchActivity"></activity>
+        <activity android:name=".Profile.EditProfile"></activity>
     </application>
 
 </manifest>

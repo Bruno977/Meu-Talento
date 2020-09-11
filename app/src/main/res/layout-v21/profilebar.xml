@@ -30,7 +30,7 @@
                     android:layout_centerVertical="true"
                     android:id="@+id/profileMenu"
                     android:src="@drawable/ic_profile_options"
-                    android:onClick="showPopup" />
+                    android:onClick="showMenu"/>
 
             </RelativeLayout>
 
