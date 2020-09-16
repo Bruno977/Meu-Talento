@@ -107,7 +107,7 @@ public class ProfileActivity extends AppCompatActivity implements PopupMenu.OnMe
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.edit_profile:
-                Intent intent1 = new Intent(this, EditProfile.class);
+                Intent intent1 = new Intent(this, EditProfileActivity.class);
                 startActivity(intent1);
                 return true;
             case R.id.sign_out:

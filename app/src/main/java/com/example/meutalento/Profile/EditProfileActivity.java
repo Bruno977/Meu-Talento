@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.meutalento.Outros.UniversalImageLoader;
 import com.example.meutalento.R;
 
-public class EditProfile extends AppCompatActivity {
+public class EditProfileActivity extends AppCompatActivity {
 
     private ImageView mProfilePhoto;
     @Override
