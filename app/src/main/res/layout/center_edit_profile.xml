@@ -17,7 +17,6 @@
                 android:layout_marginTop="20dp"
                 android:layout_centerHorizontal="true"
                 app:civ_border_color="@color/black"
-                android:src="@drawable/minhafoto"
                 app:civ_border_width="2dp"/>
 
             <TextView

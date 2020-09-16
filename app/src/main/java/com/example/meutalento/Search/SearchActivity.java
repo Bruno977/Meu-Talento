@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.meutalento.BottomNavigation.BottomNavigationViewHelper;
+import com.example.meutalento.Outros.BottomNavigationViewHelper;
 import com.example.meutalento.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -22,10 +22,10 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_register);
         Log.d(TAG, "onCreate: started.");
 
-        setupBottomNavigationView();
+        //setupBottomNavigationView();
     }
 
     private void setupBottomNavigationView(){

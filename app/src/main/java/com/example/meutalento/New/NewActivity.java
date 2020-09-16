@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.meutalento.BottomNavigation.BottomNavigationViewHelper;
+import com.example.meutalento.Outros.BottomNavigationViewHelper;
 import com.example.meutalento.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

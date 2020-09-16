@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.meutalento.BottomNavigation.BottomNavigationViewHelper;
+import com.example.meutalento.Outros.BottomNavigationViewHelper;
+import com.example.meutalento.Outros.UniversalImageLoader;
 import com.example.meutalento.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class HomeActivity extends AppCompatActivity {
     private Context mContext = HomeActivity.this;
@@ -21,6 +23,12 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setupBottomNavigationView();
+        initImageLoader();
+    }
+
+    private void initImageLoader(){
+        UniversalImageLoader universalImageLoader = new UniversalImageLoader(mContext);
+        ImageLoader.getInstance().init(universalImageLoader.getConfig());
     }
     private void setupBottomNavigationView(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavViewBar);

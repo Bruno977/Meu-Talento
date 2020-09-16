@@ -1,4 +1,4 @@
-package com.example.meutalento.BottomNavigation;
+package com.example.meutalento.Outros;
 
 import android.content.Context;
 import android.content.Intent;
