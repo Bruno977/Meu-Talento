@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         setupFirebaseAuth();
         init();
 
+
     }
 
     private boolean isStringNull(String string){
