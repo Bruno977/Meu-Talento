@@ -37,6 +37,8 @@ public class HomeActivity extends AppCompatActivity {
         initImageLoader();
 
         setupFirebaseAuth();
+
+
     }
 
     private void initImageLoader(){
@@ -51,17 +53,25 @@ public class HomeActivity extends AppCompatActivity {
         menuItem.setChecked(true);
     }
 
+
     /*
     ------------------------------------ Firebase ---------------------------------------------
      */
 
+    /**
+     * checks to see if the @param 'user' is logged in
+     * @param user
+     */
     private void checkCurrentUser(FirebaseUser user){
+
         if(user == null){
             Intent intent = new Intent(mContext, LoginActivity.class);
             startActivity(intent);
         }
     }
-
+    /**
+     * Setup the firebase auth object
+     */
     private void setupFirebaseAuth(){
 
         mAuth = FirebaseAuth.getInstance();

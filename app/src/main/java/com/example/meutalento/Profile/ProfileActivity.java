@@ -111,7 +111,8 @@ public class ProfileActivity extends AppCompatActivity implements PopupMenu.OnMe
                 startActivity(intent1);
                 return true;
             case R.id.sign_out:
-                Toast.makeText(this, "Selected Item: " +item.getTitle(), Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(this, SignOutActivity.class);
+                startActivity(intent2);
                 return true;
             default:
                 return false;

@@ -18,29 +18,29 @@ public class BottomNavigationViewHelper {
     public static void enableNavigation(final Context context, BottomNavigationView view){
         view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                    switch (menuItem.getItemId()){
+                    switch (item.getItemId()){
 
                         case R.id.ic_home:
                             Intent intent1 = new Intent(context, HomeActivity.class);
                             context.startActivity(intent1);
                             break;
-                    case R.id.ic_search:
-                        Intent intent2 = new Intent(context, SearchActivity.class);
-                        context.startActivity(intent2);
-                        break;
+                        case R.id.ic_search:
+                            Intent intent2 = new Intent(context, SearchActivity.class);
+                            context.startActivity(intent2);
+                            break;
 
-                    case  R.id.ic_add:
-                        Intent intent3 = new Intent(context, NewActivity.class);
-                        context.startActivity(intent3);
-                        break;
+                        case  R.id.ic_add:
+                            Intent intent3 = new Intent(context, NewActivity.class);
+                            context.startActivity(intent3);
+                            break;
 
-                    case  R.id.ic_profile:
-                        Intent intent4 = new Intent(context, ProfileActivity.class);
-                        context.startActivity(intent4);
-                        break;
-                }
+                        case  R.id.ic_profile:
+                            Intent intent4 = new Intent(context, ProfileActivity.class);
+                            context.startActivity(intent4);
+                            break;
+                     }
 
                 return false;
             }
