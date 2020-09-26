@@ -1,5 +1,10 @@
 package com.example.meutalento.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
 public class UserAccountSettings {
 
     private String description;
@@ -88,20 +93,5 @@ public class UserAccountSettings {
 
     public void setWebsite(String website) {
         this.website = website;
-    }
-
-
-    @Override
-    public String toString() {
-        return "UserAccountSettings{" +
-                "description='" + description + '\'' +
-                ", display_name='" + display_name + '\'' +
-                ", followers=" + followers +
-                ", following=" + following +
-                ", posts=" + posts +
-                ", profile_photo='" + profile_photo + '\'' +
-                ", username='" + username + '\'' +
-                ", website='" + website + '\'' +
-                '}';
     }
 }

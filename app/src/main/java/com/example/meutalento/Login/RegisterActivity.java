@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import timber.log.Timber;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private static final String TAG = "RegisterActivity";
@@ -52,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         mContext = RegisterActivity.this;
         firebaseMethods = new FirebaseMethods(mContext);
-        Log.d(TAG, "onCreate: started.");
+        Timber.d("onCreate: started.");
 
         initWidgets();
         setupFirebaseAuth();
@@ -78,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean checkInputs(String email, String username, String password){
-        Log.d(TAG, "checkInputs: checking inputs for null values.");
+        Timber.d("checkInputs: checking inputs for null values.");
         if(email.equals("") || username.equals("") || password.equals("")){
             Toast.makeText(mContext, "All fields must be filled out.", Toast.LENGTH_SHORT).show();
             return false;
@@ -89,7 +91,7 @@ public class RegisterActivity extends AppCompatActivity {
      * Initialize the activity widgets
      */
     private void initWidgets(){
-        Log.d(TAG, "initWidgets: Initializing Widgets.");
+        Timber.d("initWidgets: Initializing Widgets.");
         mEmail = (EditText) findViewById(R.id.input_email);
         mUsername = (EditText) findViewById(R.id.input_username);
         btnRegister = (Button) findViewById(R.id.btn_register);
@@ -103,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean isStringNull(String string){
-        Log.d(TAG, "isStringNull: checking string if null.");
+        Timber.d( "isStringNull: checking string if null.");
 
         if(string.equals("")){
             return true;
@@ -121,7 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
      * Setup the firebase auth object
      */
     private void setupFirebaseAuth(){
-        Log.d(TAG, "setupFirebaseAuth: setting up firebase auth.");
+        Timber.d( "setupFirebaseAuth: setting up firebase auth.");
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -134,7 +136,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (user != null) {
                     // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    Timber.d( "onAuthStateChanged:signed_in:" + user.getUid());
 
                     myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -142,7 +144,7 @@ public class RegisterActivity extends AppCompatActivity {
                             //1st check: Make sure the username is not already in use
                             if(firebaseMethods.checkIfUsernameExists(username, dataSnapshot)){
                                 append = myRef.push().getKey().substring(3,10);
-                                Log.d(TAG, "onDataChange: username already exists. Appending random string to name: " + append);
+                                Timber.d( "onDataChange: username already exists. Appending random string to name: " + append);
                             }
                             username = username + append;
 
@@ -164,7 +166,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 } else {
                     // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                    Timber.d( "onAuthStateChanged:signed_out");
                 }
                 // ...
             }

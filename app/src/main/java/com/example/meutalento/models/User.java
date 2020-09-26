@@ -1,5 +1,8 @@
 package com.example.meutalento.models;
 
+import lombok.Data;
+
+@Data
 public class User {
 
     private String user_id;
@@ -51,14 +54,4 @@ public class User {
         this.username = username;
     }
 
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "user_id='" + user_id + '\'' +
-                ", phone_number='" + phone_number + '\'' +
-                ", email='" + email + '\'' +
-                ", username='" + username + '\'' +
-                '}';
-    }
 }
