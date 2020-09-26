@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,19 +12,34 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.meutalento.Outros.BottomNavigationViewHelper;
+import com.example.meutalento.Outros.FirebaseMethods;
 import com.example.meutalento.Outros.GridImageAdapter;
 import com.example.meutalento.Outros.UniversalImageLoader;
 import com.example.meutalento.R;
+import com.example.meutalento.models.UserAccountSettings;
+import com.example.meutalento.models.UserSettings;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
@@ -34,6 +50,21 @@ public class ProfileActivity extends AppCompatActivity implements PopupMenu.OnMe
     private ProgressBar mProgressBar;
     private ImageView profilePhoto;
 
+    //firebase
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
+    private FirebaseMethods mFirebaseMethods;
+
+
+    private TextView mDisplayName, mUsername, mDescription;
+    private CircleImageView mProfilePhoto;
+    private GridView gridView;
+    private Toolbar toolbar;
+    private ImageView profileMenu;
+    private BottomNavigationView bottomNavigationView;
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -41,52 +72,77 @@ public class ProfileActivity extends AppCompatActivity implements PopupMenu.OnMe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        setupBottomNavigationView();
-        setupActivityWidgets();
-        setProfileImage();
-
-        tempGridSetup();
-
-    }
-
-    private void tempGridSetup(){
-        ArrayList<String> imgURLs = new ArrayList<>();
-        imgURLs.add("https://pbs.twimg.com/profile_images/616076655547682816/6gMRtQyY.jpg");
-        imgURLs.add("https://i.redd.it/9bf67ygj710z.jpg");
-        imgURLs.add("https://c1.staticflickr.com/5/4276/34102458063_7be616b993_o.jpg");
-        imgURLs.add("http://i.imgur.com/EwZRpvQ.jpg");
-        imgURLs.add("http://i.imgur.com/JTb2pXP.jpg");
-        imgURLs.add("https://i.redd.it/59kjlxxf720z.jpg");
-        imgURLs.add("https://i.redd.it/pwduhknig00z.jpg");
-        imgURLs.add("https://i.redd.it/clusqsm4oxzy.jpg");
-        imgURLs.add("https://i.redd.it/svqvn7xs420z.jpg");
-        imgURLs.add("http://i.imgur.com/j4AfH6P.jpg");
-        imgURLs.add("https://i.redd.it/89cjkojkl10z.jpg");
-        imgURLs.add("https://i.redd.it/aw7pv8jq4zzy.jpg");
-
-        setupImageGrid(imgURLs);
-    }
-
-    private void setupImageGrid(ArrayList<String> imgURLs){
-        GridView gridView = (GridView) findViewById(R.id.gridView);
-
-        int gridWidth = getResources().getDisplayMetrics().widthPixels;
-        int imageWidth = gridWidth/NUM_GRID_COLUMNS;
-        gridView.setColumnWidth(imageWidth);
-
-        GridImageAdapter adapter = new GridImageAdapter(mContext, R.layout.layout_grid_imageview, "", imgURLs);
-        gridView.setAdapter(adapter);
-    }
-    private void setProfileImage(){
-        String imgURL = "www.androidcentral.com/sites/androidcentral.com/files/styles/xlarge/public/article_images/2016/08/ac-lloyd.jpg?itok=bb72IeLf";
-        UniversalImageLoader.setImage(imgURL, profilePhoto, mProgressBar, "https://");
-    }
-    private void setupActivityWidgets(){
+        mDisplayName = findViewById(R.id.display_name);
+        mUsername = findViewById(R.id.username);
+        mDescription = findViewById(R.id.description);
+        mProfilePhoto = findViewById(R.id.profile_photo);
         mProgressBar = findViewById(R.id.profileProgressBar);
-        mProgressBar.setVisibility(View.GONE);
-        profilePhoto = findViewById(R.id.profile_photo);
+        gridView = findViewById(R.id.gridView);
+        toolbar = findViewById(R.id.profileToolbar);
+        profileMenu = findViewById(R.id.profileMenu);
+        bottomNavigationView = findViewById(R.id.bottomNavViewBar);
+        mFirebaseMethods = new FirebaseMethods(this);
+
+        setupBottomNavigationView();
+//        setupActivityWidgets();
+//        setProfileImage();
+//
+//        tempGridSetup();
+
+        setupFirebaseAuth();
 
     }
+
+    private void setProfileWidgets(UserSettings userSettings){
+
+        //User user = userSettings.getUser();
+        UserAccountSettings settings = userSettings.getSettings();
+
+        UniversalImageLoader.setImage(settings.getProfile_photo(), mProfilePhoto, null, "");
+
+        mDisplayName.setText(settings.getDisplay_name());
+        mUsername.setText(settings.getUsername());
+        mProgressBar.setVisibility(View.GONE);
+    }
+
+//    private void tempGridSetup(){
+//        ArrayList<String> imgURLs = new ArrayList<>();
+//        imgURLs.add("https://pbs.twimg.com/profile_images/616076655547682816/6gMRtQyY.jpg");
+//        imgURLs.add("https://i.redd.it/9bf67ygj710z.jpg");
+//        imgURLs.add("https://c1.staticflickr.com/5/4276/34102458063_7be616b993_o.jpg");
+//        imgURLs.add("http://i.imgur.com/EwZRpvQ.jpg");
+//        imgURLs.add("http://i.imgur.com/JTb2pXP.jpg");
+//        imgURLs.add("https://i.redd.it/59kjlxxf720z.jpg");
+//        imgURLs.add("https://i.redd.it/pwduhknig00z.jpg");
+//        imgURLs.add("https://i.redd.it/clusqsm4oxzy.jpg");
+//        imgURLs.add("https://i.redd.it/svqvn7xs420z.jpg");
+//        imgURLs.add("http://i.imgur.com/j4AfH6P.jpg");
+//        imgURLs.add("https://i.redd.it/89cjkojkl10z.jpg");
+//        imgURLs.add("https://i.redd.it/aw7pv8jq4zzy.jpg");
+//
+//        setupImageGrid(imgURLs);
+//    }
+
+//    private void setupImageGrid(ArrayList<String> imgURLs){
+//        GridView gridView = (GridView) findViewById(R.id.gridView);
+//
+//        int gridWidth = getResources().getDisplayMetrics().widthPixels;
+//        int imageWidth = gridWidth/NUM_GRID_COLUMNS;
+//        gridView.setColumnWidth(imageWidth);
+//
+//        GridImageAdapter adapter = new GridImageAdapter(mContext, R.layout.layout_grid_imageview, "", imgURLs);
+//        gridView.setAdapter(adapter);
+//    }
+//    private void setProfileImage(){
+//        String imgURL = "www.androidcentral.com/sites/androidcentral.com/files/styles/xlarge/public/article_images/2016/08/ac-lloyd.jpg?itok=bb72IeLf";
+//        UniversalImageLoader.setImage(imgURL, profilePhoto, mProgressBar, "https://");
+//    }
+//    private void setupActivityWidgets(){
+//        mProgressBar = findViewById(R.id.profileProgressBar);
+//        mProgressBar.setVisibility(View.GONE);
+//        profilePhoto = findViewById(R.id.profile_photo);
+//
+//    }
     private void setupBottomNavigationView(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavViewBar);
         BottomNavigationViewHelper.enableNavigation(mContext, bottomNavigationView);
@@ -116,6 +172,69 @@ public class ProfileActivity extends AppCompatActivity implements PopupMenu.OnMe
                 return true;
             default:
                 return false;
+        }
+    }
+
+     /*
+    ------------------------------------ Firebase ---------------------------------------------
+     */
+
+    /**
+     * Setup the firebase auth object
+     */
+    private void setupFirebaseAuth(){
+
+        mAuth = FirebaseAuth.getInstance();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+
+                if (user != null) {
+                    // User is signed in
+                } else {
+                    // User is signed out
+                }
+                // ...
+            }
+        };
+
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                //retrieve user information from the database
+                setProfileWidgets(mFirebaseMethods.getUserSettings(dataSnapshot));
+
+
+                //retrieve images for the user in question
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
         }
     }
 }
