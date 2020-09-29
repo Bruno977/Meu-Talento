@@ -46,11 +46,9 @@ public class FirebaseMethods {
     /**
      * Update 'user_account_settings' node for the current user
      * @param displayName
-     * @param website
      * @param description
-     * @param phoneNumber
      */
-    public void updateUserAccountSettings(String displayName, String website, String description, long phoneNumber){
+    public void updateUserAccountSettings(String displayName, String description){
 
         Log.d(TAG, "updateUserAccountSettings: updating user account settings.");
 
@@ -67,7 +65,7 @@ public class FirebaseMethods {
                     .child(mContext.getString(R.string.field_description))
                     .setValue(description);
         }
-        
+
     }
 
     public void updateUsername(String username){

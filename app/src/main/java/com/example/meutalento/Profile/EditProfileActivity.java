@@ -124,11 +124,11 @@ public class EditProfileActivity extends AppCompatActivity implements ConfirmPas
          */
         if(!mUserSettings.getSettings().getDisplay_name().equals(displayName)){
             //update displayname
-            mFirebaseMethods.updateUserAccountSettings(displayName, null, null, 0);
+            mFirebaseMethods.updateUserAccountSettings(displayName, null);
         }
         if(!mUserSettings.getSettings().getDescription().equals(description)){
             //update description
-            mFirebaseMethods.updateUserAccountSettings(null, null, description, 0);
+            mFirebaseMethods.updateUserAccountSettings( null, description);
         }
     }
 
