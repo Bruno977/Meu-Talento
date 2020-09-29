@@ -20,7 +20,7 @@
     <string name="confirm_password_dialog">ConfirmPaswordDialog</string>
 
     <!-- strings -->
-    <string name="gallery">GALLERY</string>
-    <string name="photo">PHOTO</string>
-    <string name="string_open_camera">Open Camera</string>
+    <string name="gallery">Galeria</string>
+    <string name="photo">Foto</string>
+    <string name="string_open_camera">Abrir Camera</string>
 </resources>

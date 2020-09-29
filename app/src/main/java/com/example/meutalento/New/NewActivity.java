@@ -44,6 +44,9 @@ public class NewActivity extends AppCompatActivity {
         //setupBottomNavigationView();
         setupViewPager();
     }
+    public int getCurrentTabNumber(){
+        return mViewPager.getCurrentItem();
+    }
 
     private void setupViewPager(){
         SectionsPagerAdapter adapter =  new SectionsPagerAdapter(getSupportFragmentManager());
