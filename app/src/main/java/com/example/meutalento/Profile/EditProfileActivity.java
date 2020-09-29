@@ -32,7 +32,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class EditProfileActivity extends AppCompatActivity {
+public class EditProfileActivity extends AppCompatActivity implements ConfirmPasswordDialog.OnConfirmPasswordListener{
+
+    @Override
+    public void onConfirmPassword(String password) {
+    }
+
 
     //firebase
     private FirebaseAuth mAuth;
@@ -109,11 +114,21 @@ public class EditProfileActivity extends AppCompatActivity {
             ConfirmPasswordDialog dialog = new ConfirmPasswordDialog();
             dialog.show(getSupportFragmentManager(), getString(R.string.confirm_password_dialog));
 
-
             // step2) check if the email already is registered
             //          -'fetchProvidersForEmail(String email)'
             // step3) change the email
             //          -submit the new email to the database and authentication
+        }
+        /**
+         * change the rest of the settings that do not require uniqueness
+         */
+        if(!mUserSettings.getSettings().getDisplay_name().equals(displayName)){
+            //update displayname
+            mFirebaseMethods.updateUserAccountSettings(displayName, null, null, 0);
+        }
+        if(!mUserSettings.getSettings().getDescription().equals(description)){
+            //update description
+            mFirebaseMethods.updateUserAccountSettings(null, null, description, 0);
         }
     }
 
