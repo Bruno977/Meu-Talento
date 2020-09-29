@@ -18,6 +18,7 @@ import com.example.meutalento.Outros.Permissions;
 import com.example.meutalento.Outros.SectionsPagerAdapter;
 import com.example.meutalento.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 
 public class NewActivity extends AppCompatActivity {
 
@@ -41,21 +42,22 @@ public class NewActivity extends AppCompatActivity {
         }
 
         //setupBottomNavigationView();
+        setupViewPager();
     }
 
     private void setupViewPager(){
         SectionsPagerAdapter adapter =  new SectionsPagerAdapter(getSupportFragmentManager());
-//        adapter.addFragment(new GalleryFragment());
-//        adapter.addFragment(new PhotoFragment());
-//
-//        mViewPager = (ViewPager) findViewById(R.id.container);
-//        mViewPager.setAdapter(adapter);
-//
-//        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsBottom);
-//        tabLayout.setupWithViewPager(mViewPager);
-//
-//        tabLayout.getTabAt(0).setText(getString(R.string.gallery));
-//        tabLayout.getTabAt(1).setText(getString(R.string.photo));
+        adapter.addFragment(new GalleryFragment());
+        adapter.addFragment(new PhotoFragment());
+
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(adapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsBottom);
+        tabLayout.setupWithViewPager(mViewPager);
+
+        tabLayout.getTabAt(0).setText(getString(R.string.gallery));
+        tabLayout.getTabAt(1).setText(getString(R.string.photo));
 
     }
 
