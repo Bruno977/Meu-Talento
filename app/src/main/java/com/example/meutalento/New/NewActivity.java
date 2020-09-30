@@ -22,32 +22,44 @@ import com.google.android.material.tabs.TabLayout;
 
 public class NewActivity extends AppCompatActivity {
 
+    private static final String TAG = "ShareActivity";
+
+    //constants
     private static final int ACTIVITY_NUM = 2;
-    private Context mContext = NewActivity.this;
     private static final int VERIFY_PERMISSIONS_REQUEST = 1;
 
     private ViewPager mViewPager;
 
 
+    private Context mContext = NewActivity.this;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new);
+        Log.d(TAG, "onCreate: started.");
 
         if(checkPermissionsArray(Permissions.PERMISSIONS)){
-
+            setupViewPager();
         }else{
             verifyPermissions(Permissions.PERMISSIONS);
         }
 
-        //setupBottomNavigationView();
-        setupViewPager();
     }
+
+    /**
+     * return the current tab number
+     * 0 = GalleryFragment
+     * 1 = PhotoFragment
+     * @return
+     */
     public int getCurrentTabNumber(){
         return mViewPager.getCurrentItem();
     }
 
+    /**
+     * setup viewpager for manager the tabs
+     */
     private void setupViewPager(){
         SectionsPagerAdapter adapter =  new SectionsPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new GalleryFragment());
@@ -64,8 +76,12 @@ public class NewActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     * verifiy all the permissions passed to the array
+     * @param permissions
+     */
     public void verifyPermissions(String[] permissions){
+        Log.d(TAG, "verifyPermissions: verifying permissions.");
 
         ActivityCompat.requestPermissions(
                 NewActivity.this,
@@ -80,6 +96,7 @@ public class NewActivity extends AppCompatActivity {
      * @return
      */
     public boolean checkPermissionsArray(String[] permissions){
+        Log.d(TAG, "checkPermissionsArray: checking permissions array.");
 
         for(int i = 0; i< permissions.length; i++){
             String check = permissions[i];
@@ -96,17 +113,19 @@ public class NewActivity extends AppCompatActivity {
      * @return
      */
     public boolean checkPermissions(String permission){
+        Log.d(TAG, "checkPermissions: checking permission: " + permission);
 
         int permissionRequest = ActivityCompat.checkSelfPermission(NewActivity.this, permission);
 
         if(permissionRequest != PackageManager.PERMISSION_GRANTED){
+            Log.d(TAG, "checkPermissions: \n Permission was not granted for: " + permission);
             return false;
         }
         else{
+            Log.d(TAG, "checkPermissions: \n Permission was granted for: " + permission);
             return true;
         }
     }
-
     private void setupBottomNavigationView(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavViewBar);
         BottomNavigationViewHelper.enableNavigation(mContext, bottomNavigationView);
