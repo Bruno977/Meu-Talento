@@ -19,6 +19,8 @@
     <!-- dialog names -->
     <string name="confirm_password_dialog">ConfirmPaswordDialog</string>
 
+    <string name="selected_image">selected_image</string>
+
     <!-- strings -->
     <string name="gallery">Galeria</string>
     <string name="photo">Foto</string>
