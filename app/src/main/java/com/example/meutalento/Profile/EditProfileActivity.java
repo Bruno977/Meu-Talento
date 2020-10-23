@@ -1,6 +1,7 @@
 package com.example.meutalento.Profile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.meutalento.Dialogs.ConfirmPasswordDialog;
 import com.example.meutalento.Login.LoginActivity;
+import com.example.meutalento.New.NewActivity;
 import com.example.meutalento.Outros.FirebaseMethods;
 import com.example.meutalento.Outros.UniversalImageLoader;
 import com.example.meutalento.R;
@@ -77,6 +79,7 @@ public class EditProfileActivity extends AppCompatActivity implements ConfirmPas
 
 
         setupFirebaseAuth();
+        getIncomingIntent();
 
         ImageView backArrow = findViewById(R.id.backArrow);
         backArrow.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +96,21 @@ public class EditProfileActivity extends AppCompatActivity implements ConfirmPas
                 saveProfileSettings();
             }
         });
+    }
+
+    private void getIncomingIntent(){
+        Intent intent = getIntent();
+
+        //if there is an imageUrl attached as an extra, then it was chosen from the gallery/photo fragment
+        if(intent.hasExtra(getString(R.string.selected_image))){
+            if(intent.getStringExtra(getString(R.string.return_to_fragment)).equals(getString(R.string.edit_profile_fragment))){
+
+                //set the new profile picture
+                FirebaseMethods firebaseMethods = new FirebaseMethods(EditProfileActivity.this);
+                firebaseMethods.uploadNewPhoto(getString(R.string.profile_photo), null, 0,
+                        intent.getStringExtra(getString(R.string.selected_image)));
+            }
+        }
     }
 
     private void saveProfileSettings(){
@@ -173,6 +191,15 @@ public class EditProfileActivity extends AppCompatActivity implements ConfirmPas
         mUsername.setText(settings.getUsername());
         mDescription.setText(settings.getDescription());
         mEmail.setText(userSettings.getUser().getEmail());
+
+        mChangeProfilePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, NewActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //268435456
+                startActivity(intent);
+            }
+        });
     }
 
         /*

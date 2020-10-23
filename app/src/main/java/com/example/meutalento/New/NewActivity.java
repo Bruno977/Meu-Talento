@@ -76,6 +76,12 @@ public class NewActivity extends AppCompatActivity {
 
     }
 
+    public int getTask(){
+        Log.d(TAG, "getTask: TASK: " + getIntent().getFlags());
+        return getIntent().getFlags();
+    }
+
+
     /**
      * verifiy all the permissions passed to the array
      * @param permissions

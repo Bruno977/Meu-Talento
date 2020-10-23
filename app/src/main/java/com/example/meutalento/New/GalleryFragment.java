@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import com.example.meutalento.Outros.FilePaths;
 import com.example.meutalento.Outros.FileSearch;
 import com.example.meutalento.Outros.GridImageAdapter;
+import com.example.meutalento.Profile.EditProfileActivity;
 import com.example.meutalento.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -76,15 +77,30 @@ public class GalleryFragment extends Fragment {
             public void onClick(View v) {
                 Log.d(TAG, "onClick: navigating to the final share screen.");
 
-                Intent intent = new Intent(getActivity(), NextActivity.class);
-                intent.putExtra(getString(R.string.selected_image), mSelectedImage);
-                startActivity(intent);
+                if(isRootTask()){
+                    Intent intent = new Intent(getActivity(), NextActivity.class);
+                    intent.putExtra(getString(R.string.selected_image), mSelectedImage);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+                    intent.putExtra(getString(R.string.selected_image), mSelectedImage);
+                    intent.putExtra(getString(R.string.return_to_fragment), getString(R.string.edit_profile_fragment));
+                    startActivity(intent);
+                }
             }
         });
 
         init();
 
         return view;
+    }
+    private boolean isRootTask(){
+        if(((NewActivity)getActivity()).getTask() == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     private void init(){

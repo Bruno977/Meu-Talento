@@ -17,7 +17,7 @@ import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 public class UniversalImageLoader {
-    private static final int defaultImage = R.drawable.minhafoto;
+    private static final int defaultImage = R.drawable.image;
     private Context mContext;
 
     public UniversalImageLoader(Context context) {
