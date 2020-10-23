@@ -198,6 +198,7 @@ public class EditProfileActivity extends AppCompatActivity implements ConfirmPas
                 Intent intent = new Intent(mContext, NewActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //268435456
                 startActivity(intent);
+                finish();
             }
         });
     }
