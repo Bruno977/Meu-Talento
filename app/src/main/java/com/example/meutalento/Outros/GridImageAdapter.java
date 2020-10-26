@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
@@ -36,7 +35,7 @@ public class GridImageAdapter extends ArrayAdapter<String> {
     }
 
     private static class ViewHolder {
-        SqaureImageView image;
+        SquareImageView image;
         ProgressBar mProgressBar;
     }
 
