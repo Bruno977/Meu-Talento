@@ -89,18 +89,23 @@ public class FirebaseMethods {
 
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
-                {
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                    storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
-                    {
+                    final Task<Uri> firebaseUrl = storageReference.getDownloadUrl();
+                    storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
-                        public void onSuccess(Uri uri)
-                        {
-                            Uri firebaseurl = uri;
-                            setProfilePhoto(firebaseurl.toString());
+                        public void onSuccess(Uri uri) {
+                            Uri dowloadUrl = uri;
+                            System.out.println("DownloadUrl: "+ dowloadUrl);
+                            Toast.makeText(mContext, "photo upload success", Toast.LENGTH_SHORT).show();
+
+                            //add the new photo to 'photos' node and 'user_photos' node
+                            addPhotoToDatabase(caption, dowloadUrl.toString());
                         }
                     });
+                    //navigate to the main feed so the user can see their photo
+                    Intent intent = new Intent(mContext, HomeActivity.class);
+                    mContext.startActivity(intent);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -144,16 +149,17 @@ public class FirebaseMethods {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
+                    storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
+                    {
+                        @Override
+                        public void onSuccess(Uri uri)
                         {
-                            @Override
-                            public void onSuccess(Uri uri)
-                            {
-                                Uri firebaseurl = uri;
-                                setProfilePhoto(firebaseurl.toString());
-                            }
-                        });
-                    }
+                            Uri firebaseurl = uri;
+                            setProfilePhoto(firebaseurl.toString());
+                        }
+                    });
+                }
+
 
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
