@@ -180,7 +180,7 @@ public class ProfileActivity extends AppCompatActivity implements PopupMenu.OnMe
 //    }
     private void setupBottomNavigationView(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavViewBar);
-        BottomNavigationViewHelper.enableNavigation(mContext, bottomNavigationView);
+        BottomNavigationViewHelper.enableNavigation(mContext, this,bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);
@@ -200,6 +200,7 @@ public class ProfileActivity extends AppCompatActivity implements PopupMenu.OnMe
             case R.id.edit_profile:
                 Intent intent1 = new Intent(this, EditProfileActivity.class);
                 startActivity(intent1);
+                this.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 return true;
             case R.id.sign_out:
                 Intent intent2 = new Intent(this, SignOutActivity.class);
