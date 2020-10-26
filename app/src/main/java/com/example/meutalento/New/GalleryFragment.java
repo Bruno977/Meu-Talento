@@ -88,6 +88,7 @@ public class GalleryFragment extends Fragment {
                     startActivity(intent);
                     getActivity().finish();
                 }
+
             }
         });
 
@@ -95,6 +96,7 @@ public class GalleryFragment extends Fragment {
 
         return view;
     }
+
     private boolean isRootTask(){
         if(((NewActivity)getActivity()).getTask() == 0){
             return true;
