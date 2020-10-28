@@ -5,6 +5,7 @@
 
     <!-- fragment names -->
     <string name="edit_profile_fragment">Edit Profile</string>
+    <string name="view_post_fragment">View Post</string>
 
     <!-- Firebase messages -->
     <string name="auth_failed">Failed to Authenticate</string>
@@ -20,9 +21,13 @@
     <string name="field_email">email</string>
     <string name="field_display_name">display_name</string>
     <string name="field_description">description</string>
+    <string name="field_user_id">user_id</string>
+
 
     <!-- dialog names -->
     <string name="confirm_password_dialog">ConfirmPaswordDialog</string>
+
+
 
     <!-- photo types -->
     <string name="new_photo">new_photo</string>
@@ -33,6 +38,9 @@
     <string name="selected_image">selected_image</string>
     <string name="selected_bitmap">selected_bitmap</string>
     <string name="return_to_fragment">return_to_fragment</string>
+
+    <!-- Bundle arg names -->
+    <string name="activity_number">activity_number</string>
 
     <!-- strings -->
     <string name="gallery">Galeria</string>
