@@ -18,9 +18,9 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.meutalento.Outros.FilePaths;
-import com.example.meutalento.Outros.FileSearch;
-import com.example.meutalento.Outros.GridImageAdapter;
+import com.example.meutalento.others.FilePaths;
+import com.example.meutalento.others.FileSearch;
+import com.example.meutalento.others.GridImageAdapter;
 import com.example.meutalento.Profile.EditProfileActivity;
 import com.example.meutalento.R;
 import com.nostra13.universalimageloader.core.ImageLoader;

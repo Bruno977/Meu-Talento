@@ -1,12 +1,10 @@
-package com.example.meutalento.Outros;
+package com.example.meutalento.others;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {

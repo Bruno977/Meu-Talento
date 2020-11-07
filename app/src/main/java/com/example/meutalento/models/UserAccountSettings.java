@@ -1,11 +1,14 @@
 package com.example.meutalento.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-public class UserAccountSettings {
+public class UserAccountSettings  implements Parcelable {
 
     private String description;
     private String display_name;
@@ -107,5 +110,15 @@ public class UserAccountSettings {
                 ", username='" + username + '\'' +
                 ", website='" + website + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }

@@ -1,7 +1,6 @@
 package com.example.meutalento.Search;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,9 +16,8 @@ import android.widget.ListView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.meutalento.Outros.BottomNavigationViewHelper;
-import com.example.meutalento.Outros.UserListAdapter;
-import com.example.meutalento.Profile.ProfileActivity;
+import com.example.meutalento.others.BottomNavigationViewHelper;
+import com.example.meutalento.others.UserListAdapter;
 import com.example.meutalento.R;
 import com.example.meutalento.models.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -32,117 +30,114 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class SearchActivity extends AppCompatActivity {
-    private static final String TAG = "SearchActivity";
-    private static final int ACTIVITY_NUM = 1;
+        private static final String TAG = "SearchActivity";
+        private static final int ACTIVITY_NUM = 1;
 
-    private Context mContext = SearchActivity.this;
+        private Context mContext = SearchActivity.this;
 
-    //widgets
-    private EditText mSearchParam;
-    private ListView mListView;
+        //widgets
+        private EditText mSearchParam;
+        private ListView mListView;
 
-    //vars
-    private List<User> mUserList;
-    private UserListAdapter mAdapter;
+        //vars
+        private List<User> mUserList;
+        private UserListAdapter mAdapter;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
-        mSearchParam = (EditText) findViewById(R.id.search);
-        mListView = (ListView) findViewById(R.id.listView);
-        Log.d(TAG, "onCreate: started.");
+        @Override
+        protected void onCreate(@Nullable Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_search);
+            mSearchParam = (EditText) findViewById(R.id.search);
+            mListView = (ListView) findViewById(R.id.listView);
+            Log.d(TAG, "onCreate: started.");
 
+            hideSoftKeyboard();
+            setupBottomNavigationView();
+            initTextListener();
+        }
 
+        private void initTextListener(){
+            Log.d(TAG, "initTextListener: initializing");
 
-        hideSoftKeyboard();
-        setupBottomNavigationView();
-        initTextListener();
-    }
+            mUserList = new ArrayList<>();
 
-    private void initTextListener(){
-        Log.d(TAG, "initTextListener: initializing");
-
-        mUserList = new ArrayList<>();
-
-        mSearchParam.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-                String text=mSearchParam.getText().toString();
-                searchForMatch(text);
-            }
-        });
-    }
-
-    private void searchForMatch(String keyword){
-        Log.d(TAG, "searchForMatch: searching for a match: " + keyword);
-        mUserList.clear();
-        //update the users list view
-        if(keyword.length() ==0){
-
-        }else{
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-            Query query = reference.child(getString(R.string.dbname_users))
-                    .orderByChild(getString(R.string.field_username)).equalTo(keyword);
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
+            mSearchParam.addTextChangedListener(new TextWatcher() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for(DataSnapshot singleSnapshot :  dataSnapshot.getChildren()){
-                        Log.d(TAG, "onDataChange: found user:" + singleSnapshot.getValue(User.class).toString());
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                        mUserList.add(singleSnapshot.getValue(User.class));
-                        //update the users list view
-                        updateUsersList();
-                    }
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                    String text=mSearchParam.getText().toString();
+                    searchForMatch(text);
+                }
+            });
+        }
+
+        private void searchForMatch(String keyword){
+            Log.d(TAG, "searchForMatch: searching for a match: " + keyword);
+            mUserList.clear();
+            //update the users list view
+            if(keyword.length() ==0){
+
+            }else{
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+                Query query = reference.child(getString(R.string.dbname_users))
+                        .orderByChild(getString(R.string.field_username)).equalTo(keyword);
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for(DataSnapshot singleSnapshot :  dataSnapshot.getChildren()){
+                            Log.d(TAG, "onDataChange: found user:" + singleSnapshot.getValue(User.class).toString());
+
+                            mUserList.add(singleSnapshot.getValue(User.class));
+                            //update the users list view
+                            updateUsersList();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        }
+
+        private void updateUsersList(){
+            Log.d(TAG, "updateUsersList: updating users list");
+
+            mAdapter = new UserListAdapter(SearchActivity.this, R.layout.layout_user_listitem, mUserList);
+
+            mListView.setAdapter(mAdapter);
+
+            mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Log.d(TAG, "onItemClick: selected user: " + mUserList.get(position).toString());
+
+                    //navigate to profile activity
 
                 }
             });
         }
-    }
 
-    private void updateUsersList(){
-        Log.d(TAG, "updateUsersList: updating users list");
 
-        mAdapter = new UserListAdapter(SearchActivity.this, R.layout.layout_user_listitem, mUserList);
-
-        mListView.setAdapter(mAdapter);
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG, "onItemClick: selected user: " + mUserList.get(position).toString());
-
-                //navigate to profile activity
-
+        private void hideSoftKeyboard(){
+            if(getCurrentFocus() != null){
+                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
             }
-        });
-    }
-
-
-    private void hideSoftKeyboard(){
-        if(getCurrentFocus() != null){
-            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
-    }
 
     private void setupBottomNavigationView(){
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavViewBar);

@@ -13,9 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 
-import com.example.meutalento.Outros.FirebaseMethods;
+import com.example.meutalento.others.FirebaseMethods;
 import com.example.meutalento.R;
 import com.example.meutalento.models.User;
 import com.google.firebase.auth.FirebaseAuth;

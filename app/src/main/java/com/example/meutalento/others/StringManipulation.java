@@ -1,4 +1,4 @@
-package com.example.meutalento.Outros;
+package com.example.meutalento.others;
 
 public class StringManipulation {
 

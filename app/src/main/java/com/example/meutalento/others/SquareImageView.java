@@ -1,4 +1,4 @@
-package com.example.meutalento.Outros;
+package com.example.meutalento.others;
 
 import android.content.Context;
 import android.util.AttributeSet;

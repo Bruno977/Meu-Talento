@@ -18,8 +18,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.meutalento.Dialogs.ConfirmPasswordDialog;
 import com.example.meutalento.New.NewActivity;
-import com.example.meutalento.Outros.FirebaseMethods;
-import com.example.meutalento.Outros.UniversalImageLoader;
+import com.example.meutalento.others.FirebaseMethods;
+import com.example.meutalento.others.UniversalImageLoader;
 import com.example.meutalento.R;
 import com.example.meutalento.models.UserAccountSettings;
 import com.example.meutalento.models.UserSettings;

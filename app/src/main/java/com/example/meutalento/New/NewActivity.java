@@ -1,6 +1,5 @@
 package com.example.meutalento.New;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -13,9 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.meutalento.Outros.BottomNavigationViewHelper;
-import com.example.meutalento.Outros.Permissions;
-import com.example.meutalento.Outros.SectionsPagerAdapter;
+import com.example.meutalento.others.BottomNavigationViewHelper;
+import com.example.meutalento.others.Permissions;
+import com.example.meutalento.others.SectionsPagerAdapter;
 import com.example.meutalento.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;

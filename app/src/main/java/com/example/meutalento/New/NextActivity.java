@@ -14,8 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.meutalento.Outros.FirebaseMethods;
-import com.example.meutalento.Outros.UniversalImageLoader;
+import com.example.meutalento.others.FirebaseMethods;
+import com.example.meutalento.others.UniversalImageLoader;
 import com.example.meutalento.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
