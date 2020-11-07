@@ -1,4 +1,4 @@
-package com.example.meutalento.Profile;
+package com.example.meutalento.profile;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.meutalento.Login.LoginActivity;
+import com.example.meutalento.login.LoginActivity;
 import com.example.meutalento.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

@@ -1,4 +1,4 @@
-package com.example.meutalento.Search;
+package com.example.meutalento.search;
 
 import android.content.Context;
 import android.os.Bundle;

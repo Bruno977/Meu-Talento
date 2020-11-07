@@ -16,8 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Profile.SignOutActivity"></activity>
-        <activity android:name=".Home.HomeActivity">
+        <activity android:name=".profile.SignOutActivity"></activity>
+        <activity android:name=".home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,11 +25,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".New.NewActivity" />
-        <activity android:name=".Profile.ProfileActivity" />
-        <activity android:name=".Search.SearchActivity" />
-        <activity android:name=".Profile.EditProfileActivity" />
-        <activity android:name=".Login.LoginActivity" />
-        <activity android:name=".Login.RegisterActivity" />
+        <activity android:name=".profile.ProfileActivity" />
+        <activity android:name=".search.SearchActivity" />
+        <activity android:name=".profile.EditProfileActivity" />
+        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".login.RegisterActivity" />
         <activity android:name=".New.NextActivity"/>
 
     </application>

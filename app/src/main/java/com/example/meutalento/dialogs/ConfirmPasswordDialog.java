@@ -1,4 +1,4 @@
-package com.example.meutalento.Dialogs;
+package com.example.meutalento.dialogs;
 
 import android.content.Context;
 import android.os.Bundle;

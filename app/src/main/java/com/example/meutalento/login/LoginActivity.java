@@ -1,4 +1,4 @@
-package com.example.meutalento.Login;
+package com.example.meutalento.login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.meutalento.Home.HomeActivity;
+import com.example.meutalento.home.HomeActivity;
 import com.example.meutalento.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

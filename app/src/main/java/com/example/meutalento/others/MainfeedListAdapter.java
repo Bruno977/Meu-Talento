@@ -17,8 +17,8 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.meutalento.Home.HomeActivity;
-import com.example.meutalento.Profile.ProfileActivity;
+import com.example.meutalento.home.HomeActivity;
+import com.example.meutalento.profile.ProfileActivity;
 import com.example.meutalento.R;
 import com.example.meutalento.models.Comment;
 import com.example.meutalento.models.Like;

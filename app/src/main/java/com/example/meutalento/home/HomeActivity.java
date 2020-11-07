@@ -1,4 +1,4 @@
-package com.example.meutalento.Home;
+package com.example.meutalento.home;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.meutalento.Login.LoginActivity;
+import com.example.meutalento.login.LoginActivity;
 import com.example.meutalento.others.BottomNavigationViewHelper;
 import com.example.meutalento.others.SectionsPagerAdapter;
 import com.example.meutalento.others.UniversalImageLoader;

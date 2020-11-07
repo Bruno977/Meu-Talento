@@ -7,12 +7,11 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 
-import com.example.meutalento.Home.HomeActivity;
+import com.example.meutalento.home.HomeActivity;
 import com.example.meutalento.New.NewActivity;
-import com.example.meutalento.Profile.ProfileActivity;
-import com.example.meutalento.Profile.ProfileFragment;
+import com.example.meutalento.profile.ProfileActivity;
 import com.example.meutalento.R;
-import com.example.meutalento.Search.SearchActivity;
+import com.example.meutalento.search.SearchActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class BottomNavigationViewHelper {

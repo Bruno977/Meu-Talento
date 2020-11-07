@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.meutalento.Home.HomeActivity;
+import com.example.meutalento.home.HomeActivity;
 import com.example.meutalento.R;
 import com.example.meutalento.models.Photo;
 import com.example.meutalento.models.User;

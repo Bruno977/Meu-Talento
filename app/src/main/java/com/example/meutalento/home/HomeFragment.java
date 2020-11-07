@@ -1,4 +1,4 @@
-package com.example.meutalento.Home;
+package com.example.meutalento.home;
 
 import android.os.Bundle;
 import android.util.Log;

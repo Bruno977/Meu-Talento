@@ -21,7 +21,7 @@ import androidx.fragment.app.Fragment;
 import com.example.meutalento.others.FilePaths;
 import com.example.meutalento.others.FileSearch;
 import com.example.meutalento.others.GridImageAdapter;
-import com.example.meutalento.Profile.EditProfileActivity;
+import com.example.meutalento.profile.EditProfileActivity;
 import com.example.meutalento.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;

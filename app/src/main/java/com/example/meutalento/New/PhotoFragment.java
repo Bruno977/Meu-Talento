@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.meutalento.others.Permissions;
-import com.example.meutalento.Profile.EditProfileActivity;
+import com.example.meutalento.profile.EditProfileActivity;
 import com.example.meutalento.R;
 
 public class PhotoFragment extends Fragment {

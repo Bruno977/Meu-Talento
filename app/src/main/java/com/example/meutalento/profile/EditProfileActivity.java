@@ -1,4 +1,4 @@
-package com.example.meutalento.Profile;
+package com.example.meutalento.profile;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.meutalento.Dialogs.ConfirmPasswordDialog;
+import com.example.meutalento.dialogs.ConfirmPasswordDialog;
 import com.example.meutalento.New.NewActivity;
 import com.example.meutalento.others.FirebaseMethods;
 import com.example.meutalento.others.UniversalImageLoader;
