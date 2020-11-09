@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.meutalento.R;
-import com.example.meutalento.ViewPostFragment;
 import com.example.meutalento.models.Photo;
+import com.example.meutalento.others.ViewPostFragment;
 
 public class ProfileActivity extends AppCompatActivity implements ProfileFragment.OnGridImageSelectedListener {
     @Override
